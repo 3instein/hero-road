@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Door : MonoBehaviour
@@ -10,12 +8,20 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player")
+        if (collision.tag == "Player")
         {
             if (collision.transform.position.x < transform.position.x)
+            {
                 cam.MoveToNewRoom(nextRoom);
-            else
+            } else
+            {
                 cam.MoveToNewRoom(previousRoom);
+            }
         }
+    }
+
+    private void Awake()
+    {
+        cam = Camera.main.GetComponent<CameraController>();
     }
 }
