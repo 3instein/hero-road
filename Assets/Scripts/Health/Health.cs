@@ -13,6 +13,14 @@ public class Health : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown("e"))
+        {
+            TakeDamage(1);
+        }
+    }
+
     public void TakeDamage(float _damage)
     {
         currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
@@ -34,11 +42,8 @@ public class Health : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void AddHealth(float _value)
     {
-        if (Input.GetKeyDown("e"))
-        {
-            TakeDamage(1);
-        }
+        currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
     }
 }
