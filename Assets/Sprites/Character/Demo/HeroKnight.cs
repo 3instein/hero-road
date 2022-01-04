@@ -148,7 +148,7 @@ public class HeroKnight : MonoBehaviour {
         }
 
         // Roll
-        else if (Input.GetKeyDown("left shift") && !m_rolling && !m_isWallSliding)
+        else if (Input.GetKeyDown("left shift") && !m_rolling && !m_isWallSliding && m_grounded)
         {
             m_rolling = true;
             m_animator.SetTrigger("Roll");
