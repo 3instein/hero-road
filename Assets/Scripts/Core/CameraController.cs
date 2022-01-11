@@ -5,6 +5,7 @@ public class CameraController : MonoBehaviour
     // Room camera
     [SerializeField] private float speed;
     private float currentPosX;
+    private float currentPostY;
     private Vector3 velocity = Vector3.zero;
 
     // Follow player

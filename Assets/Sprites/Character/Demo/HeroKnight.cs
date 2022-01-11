@@ -21,6 +21,7 @@ public class HeroKnight : MonoBehaviour {
     private bool                m_grounded = false;
     private bool                m_rolling = false;
     private bool                m_blocking = false;
+    private bool hit = false;
     private float               m_timeSinceBlocking = 0.0f;
     private int                 m_facingDirection = 1;
     private int                 m_currentAttack = 0;
@@ -29,6 +30,9 @@ public class HeroKnight : MonoBehaviour {
     private float               m_rollDuration = 8.0f / 14.0f;
     private float               m_rollCurrentTime;
     private BoxCollider2D       boxCollider;
+
+    [Header("SFX")]
+    [SerializeField] private AudioClip jumpSound;
 
 
     // Use this for initialization
@@ -116,6 +120,8 @@ public class HeroKnight : MonoBehaviour {
         else if (Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling && m_grounded && !m_blocking)
         {
             m_currentAttack++;
+            hit = true;
+            
 
             // Loop back to one after third attack
             if (m_currentAttack > 3)
@@ -159,6 +165,7 @@ public class HeroKnight : MonoBehaviour {
         //Jump
         else if (Input.GetKeyDown("space") && m_grounded && !m_rolling)
         {
+            SoundManager.instance.PlaySound(jumpSound);
             m_animator.SetTrigger("Jump");
             m_grounded = false;
             m_animator.SetBool("Grounded", m_grounded);
@@ -201,14 +208,6 @@ public class HeroKnight : MonoBehaviour {
             GameObject dust = Instantiate(m_slideDust, spawnPosition, gameObject.transform.localRotation) as GameObject;
             // Turn arrow in correct direction
             dust.transform.localScale = new Vector3(m_facingDirection, 1, 1);
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Enemy")
-        {
-            collision.GetComponent<Health>().TakeDamage(1);
         }
     }
 }

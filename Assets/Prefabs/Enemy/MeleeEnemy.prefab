@@ -143,9 +143,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e32258101d951145904575e7fe9af15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 3
+  startingHealth: 1
   iFrameDuration: 0
   numberOfFlashes: 0
+  deathSound: {fileID: 8300000, guid: 5bcd685cd44de5c42b50d58fbcd91ffd, type: 3}
 --- !u!114 &2739242791308398067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,9 +161,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCooldown: 2
   range: 2
-  colliderDistance: 0.5
   damage: 1
+  colliderDistance: 0.3
   boxCollider: {fileID: 2739242791308398069}
   playerLayer:
     serializedVersion: 2
     m_Bits: 1024
+  attackSound: {fileID: 8300000, guid: f5517a1be2513e449a61d9f34ac26375, type: 3}
