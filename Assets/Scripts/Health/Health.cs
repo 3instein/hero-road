@@ -18,6 +18,8 @@ public class Health : MonoBehaviour
     [SerializeField] private AudioClip deathSound;
     [SerializeField] private AudioClip hurtSound;
 
+    public GameOverScreen gameOverScreen;
+
     private void Awake()
     {
         currentHealth = startingHealth;
@@ -27,10 +29,10 @@ public class Health : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("e"))
-        {
-            TakeDamage(1);
-        }
+        //if (Input.GetKeyDown("e"))
+        //{
+        //    TakeDamage(1);
+        //}
     }
 
     public void TakeDamage(float _damage)
@@ -54,6 +56,7 @@ public class Health : MonoBehaviour
                 anim.SetTrigger("Death");
                 dead = true;
                 SoundManager.instance.PlaySound(deathSound);
+                gameObject.GetComponent<HeroKnight>().enabled = false;
             }
         }
     }
